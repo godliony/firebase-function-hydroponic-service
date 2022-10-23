@@ -9,8 +9,8 @@ module.exports = {
     //get all device
     async index(req, res) {
         try{
-            const devices = await Device.where("owner","==",req.params.ownerID).get().then((querySnapshot) => {
-                return querySnapshot.docs.map(doc => Object.assign({ data: doc.data() }, { id: doc.id }))
+            const devices = await Device.where("ownerId","==",req.params.ownerID).get().then((querySnapshot) => {
+                return querySnapshot.docs.map(doc => Object.assign(doc.data(), { id: doc.id }))
             })
             res.send(devices)
         }catch(err){
